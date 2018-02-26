@@ -13,7 +13,7 @@ import IconButton from 'material-ui/IconButton';
 const localStyles = {
   container: {
     textAlign: 'center',
-    paddingTop: 200
+    padding: '20px'
   }
 }
 
@@ -28,7 +28,9 @@ export default class Home extends Component<Props> {
     // Default text
     this.state = {
       text: '', 
-      title: 'Bienvenido Hermano'
+      title: 'Bienvenido Hermano',
+      welcomeText: 'Bienvenido a Teocratic Wall le recordamos querido hermano que esta es una herramienta para poder compartir informacion de eventos como predicacion algunas asignaciones con el fin de aprovechar las tecnologias y asi poder tener siempre acceder a la misma.',
+      recomendations: 'Nota: Esta aplicacion fue creada para agendar informacion de la congregacion por lo tanto para el uso exclusivo de Testigos de Jehova, si es usted Testigo de Jehova y no esta designado al uso de esta aplicacion o usted no es un Testigo de Jehova le remomendamos poder cerrar la aplicacion y desinstalarla'
     }
   }
 
@@ -55,19 +57,24 @@ export default class Home extends Component<Props> {
           title={this.state.title} iconElementRight={<IconButton><MoreVert /></IconButton>} 
         />
         <div style={localStyles.container}>
-          <h1>Material-UI</h1>
-          <h2>example project</h2>
-          <form onSubmit={this.onSubmit}>
-            <TextField
-              ref='cool_text'
-              floatingLabelText='Say something cool!'
-              defaultValue={this.state.text}
-            />
-            <br />
-            <RaisedButton to="/counter" type='submit' label='Submit' primary />
-          </form>
+          <div>{this.state.welcomeText}</div>
+          <div style={{ height:"20px"}}></div>
+          <div>{this.state.recomendations}</div>
         </div>
       </div>
     );
   }
 }
+
+
+/* <h1>Material-UI</h1>
+<h2>example project</h2>
+<form onSubmit={this.onSubmit}>
+  <TextField
+    ref='cool_text'
+    floatingLabelText='Say something cool!'
+    defaultValue={this.state.text}
+  />
+  <br />
+  <RaisedButton to="/counter" type='submit' label='Submit' primary />
+</form> */

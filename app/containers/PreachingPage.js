@@ -1,6 +1,6 @@
 // @flow 
 import React, { Component } from 'react'; 
-import Home from '../components/Home'; 
+import Preaching from '../components/Preaching'; 
  
 type Props = {}; 
  
@@ -9,7 +9,7 @@ export default class PreachingPage extends Component<Props> {
  
   render() { 
     return ( 
-      <Home /> 
+      <Preaching /> 
     ); 
   } 
 }

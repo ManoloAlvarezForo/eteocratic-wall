@@ -12,6 +12,7 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts'; 
 import Divider from 'material-ui/Divider'; 
 import ActionInfo from 'material-ui/svg-icons/action/info'; 
+import ActionHome from 'material-ui/svg-icons/action/home'; 
 import NotificationWc from 'material-ui/svg-icons/notification/wc'; 
 import DirectionWalk from 'material-ui/svg-icons/maps/directions-walk'; 
 import AvMic from 'material-ui/svg-icons/av/mic'; 
@@ -20,7 +21,8 @@ import Avatar from 'material-ui/Avatar';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment'; 
 import AccountBalance from 'material-ui/svg-icons/action/account-balance'; 
 import PropTypes from 'prop-types'; 
- 
+import { push } from 'react-router-redux'
+import Link from 'react-router-dom/Link';
  
 type Props = { 
   children: React.Node 
@@ -61,6 +63,14 @@ function wrapState(ComposedComponent) {
 } 
  
 SelectableList = wrapState(SelectableList); 
+
+// const CustomListItem = (props) => {
+//     return render(
+//         <div>
+//             <></ListItem>
+//         </div>
+//     );
+// }
  
 export default class CustomDrawer extends Component<Props> { 
   props: Props; 
@@ -69,6 +79,8 @@ export default class CustomDrawer extends Component<Props> {
     super(props) 
     this.state = {open: true}; 
   } 
+
+  
  
   render() { 
     return ( 
@@ -77,11 +89,13 @@ export default class CustomDrawer extends Component<Props> {
             <div style= {{ paddingBottom: "8px", textAlign: 'center', fontSize: '14px', color: 'white'}}>Los Sauces</div> 
             <Divider /> 
             <SelectableList defaultValue={0}> 
-              <ListItem value={1} style={{color: 'white'}} primaryText="Predicacion" leftIcon={<NotificationWc color={ "white" }/>} /> 
-              <ListItem value={2}  style={{color: 'white'}} primaryText="Acomodadores" leftIcon={<DirectionWalk color={ "white" }/>} /> 
+              <ListItem color="white" containerElement={<Link to="/preaching" />} primaryText="Inicio" value={0} style={{color: 'white'}} leftIcon={<ActionHome color={ "white" }/>} /> 
+              <ListItem color="white" containerElement={<Link to="/preaching" />} primaryText="Predicacion" value={1} style={{color: 'white'}} leftIcon={<NotificationWc color={ "white" }/>} /> 
+              <ListItem containerElement={<Link to="/" color="white"/>} value={2}  style={{color: 'white'}} primaryText="Acomodadores" leftIcon={<DirectionWalk color={ "white" }/>} /> 
               <ListItem value={3}  style={{color: 'white'}} primaryText="Microfonos" leftIcon={<AvMic color={ "white" }/>} /> 
               <ListItem value={4}  style={{color: 'white'}} primaryText="Configuracion" leftIcon={<ActionSettings color={ "white" }/>} /> 
             </SelectableList> 
+            
           </Paper> 
     ); 
   } 

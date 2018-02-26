@@ -4,12 +4,14 @@ import { Switch, Route } from 'react-router';
 import App from './containers/App';
 import HomePage from './containers/HomePage';
 import CounterPage from './containers/CounterPage';
+import PreachingPage from "./containers/PreachingPage";
 
 export default () => (
   <App>
     <Switch>
       <Route path="/counter" component={CounterPage} />
-      <Route path="/" component={HomePage} />
+      <Route exact path="/" component={HomePage} />
+      <Route path="/preaching" component={PreachingPage} />
     </Switch>
   </App>
 );

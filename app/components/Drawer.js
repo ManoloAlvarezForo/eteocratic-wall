@@ -89,13 +89,12 @@ export default class CustomDrawer extends Component<Props> {
             <div style= {{ paddingBottom: "8px", textAlign: 'center', fontSize: '14px', color: 'white'}}>Los Sauces</div> 
             <Divider /> 
             <SelectableList defaultValue={0}> 
-              <ListItem color="white" containerElement={<Link to="/preaching" />} primaryText="Inicio" value={0} style={{color: 'white'}} leftIcon={<ActionHome color={ "white" }/>} /> 
+              <ListItem color="white" containerElement={<Link to="/" />} primaryText="Inicio" value={0} style={{color: 'white'}} leftIcon={<ActionHome color={ "white" }/>} /> 
               <ListItem color="white" containerElement={<Link to="/preaching" />} primaryText="Predicacion" value={1} style={{color: 'white'}} leftIcon={<NotificationWc color={ "white" }/>} /> 
               <ListItem containerElement={<Link to="/" color="white"/>} value={2}  style={{color: 'white'}} primaryText="Acomodadores" leftIcon={<DirectionWalk color={ "white" }/>} /> 
               <ListItem value={3}  style={{color: 'white'}} primaryText="Microfonos" leftIcon={<AvMic color={ "white" }/>} /> 
               <ListItem value={4}  style={{color: 'white'}} primaryText="Configuracion" leftIcon={<ActionSettings color={ "white" }/>} /> 
             </SelectableList> 
-            
           </Paper> 
     ); 
   } 

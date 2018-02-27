@@ -6,11 +6,10 @@ import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import {List, ListItem, makeSelectable} from 'material-ui/List'; 
 import Paper from 'material-ui/Paper';
 import NotificationWc from 'material-ui/svg-icons/notification/wc'; 
-import Link from 'react-router-dom/Link';
 
 
 // Material-UI
-export default class Preaching extends Component<Props> {
+export default class PreachingDetail extends Component<Props> {
   props: Props;
 
   constructor(props) {
@@ -19,7 +18,7 @@ export default class Preaching extends Component<Props> {
     // Default text
     this.state = {
       text: '', 
-      title: 'Predicacion'
+      title: 'Detail'
     }
   }
 
@@ -30,11 +29,7 @@ export default class Preaching extends Component<Props> {
                 title={this.state.title} iconElementRight={<IconButton><MoreVert /></IconButton>}
             />
             <div style={{ margin: "20px"}}>
-                <List>
-                    <Paper zDepth={1}>
-                        <ListItem containerElement={<Link to="/preachingdetail" color="white"/>} primaryText="Del 1 de Enero de 2018 al 3 de Enero de 2018" leftIcon={<NotificationWc />} />
-                    </Paper>
-                </List>
+                Detail
             </div>
         </div>
     );

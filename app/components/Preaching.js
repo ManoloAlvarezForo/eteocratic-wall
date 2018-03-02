@@ -31,8 +31,8 @@ export default class Preaching extends Component<Props> {
             />
             <div style={{ margin: "20px"}}>
                 <List>
-                    <Paper zDepth={1}>
-                        <ListItem containerElement={<Link to="/preachingdetail" color="white"/>} primaryText="Del 1 de Enero de 2018 al 3 de Enero de 2018" leftIcon={<NotificationWc />} />
+                    <Paper zDepth={1} style={{ borderRadius: '5px'}}>
+                        <ListItem style={{ borderRadius: '5px' }} containerElement={<Link to="/preachingdetail" color="white"/>} primaryText="Del 1 de Enero de 2018 al 3 de Enero de 2018" leftIcon={<NotificationWc />} />
                     </Paper>
                 </List>
             </div>

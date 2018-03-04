@@ -1,13 +1,7 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Home.css';
 // Material-UI
-import RaisedButton from 'material-ui/RaisedButton'
-import TextField from 'material-ui/TextField'
-import AppBar from 'material-ui/AppBar';
-import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import IconButton from 'material-ui/IconButton';
 
 // Styles
 const localStyles = {
@@ -52,15 +46,8 @@ export default class Home extends Component<Props> {
 
   render() {
     return (
-      <div>
-        <AppBar style={{ backgroundColor: '#454546' }}
-          title={this.state.title} iconElementRight={<IconButton><MoreVert /></IconButton>} 
-        />
-        <div style={localStyles.container}>
-          <div>{this.state.welcomeText}</div>
-          <div style={{ height:"20px"}}></div>
-          <div>{this.state.recomendations}</div>
-        </div>
+      <div style={{ color: 'black'}}>
+          <div>Home</div>
       </div>
     );
   }

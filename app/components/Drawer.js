@@ -81,7 +81,7 @@ const styles = theme => ({
 class MiniDrawer extends React.Component {
   state = {
     open: true,
-    headerTitle: 'Bienvenido Hermano'
+    headerTitle: 'Teocratic Wall'
   };
 
   handleDrawerOpen = () => {

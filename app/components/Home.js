@@ -1,6 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import styles from './Home.css';
+import PropTypes from 'prop-types';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 // Material-UI
 
 // Styles
@@ -15,7 +18,6 @@ type Props = {};
 
 export default class Home extends Component<Props> {
   props: Props;
-
   constructor(props, context) {
     super(props, context)
 
@@ -46,8 +48,15 @@ export default class Home extends Component<Props> {
 
   render() {
     return (
-      <div style={{ color: 'black'}}>
-          <div>Home</div>
+      <div style={{ color: 'black' }}>
+        <Paper style={{ borderRadius: '5px', height: '100vh', padding: '10px' }} elevation={1}>
+          <Typography variant="headline" component="h3">
+              Bienvenido a Teocratic Wall.
+          </Typography>
+          <Typography component="p">
+            Le damos la bienvenida a Teocratic Wall esta aplicacion fue creada para poder agendar y organizar eventos importantes como predicacion y organozacion de las reuniones.
+          </Typography>
+        </Paper>
       </div>
     );
   }

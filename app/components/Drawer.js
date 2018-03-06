@@ -1,102 +1,156 @@
-// @flow 
-import React, { Component } from 'react'; 
-import Drawer from 'material-ui/Drawer'; 
-import MenuItem from 'material-ui/MenuItem'; 
-import RaisedButton from 'material-ui/RaisedButton'; 
-import { deepOrange500 } from 'material-ui/styles/colors' 
-import Paper from 'material-ui/Paper'; 
-import {List, ListItem, makeSelectable} from 'material-ui/List'; 
-import ContentInbox from 'material-ui/svg-icons/content/inbox'; 
-import ActionGrade from 'material-ui/svg-icons/action/grade'; 
-import ContentSend from 'material-ui/svg-icons/content/send'; 
-import ContentDrafts from 'material-ui/svg-icons/content/drafts'; 
-import Divider from 'material-ui/Divider'; 
-import ActionInfo from 'material-ui/svg-icons/action/info'; 
-import ActionHome from 'material-ui/svg-icons/action/home'; 
-import NotificationWc from 'material-ui/svg-icons/notification/wc'; 
-import DirectionWalk from 'material-ui/svg-icons/maps/directions-walk'; 
-import AvMic from 'material-ui/svg-icons/av/mic'; 
-import ActionSettings from 'material-ui/svg-icons/action/settings'; 
-import Avatar from 'material-ui/Avatar'; 
-import ActionAssignment from 'material-ui/svg-icons/action/assignment'; 
-import AccountBalance from 'material-ui/svg-icons/action/account-balance'; 
-import PropTypes from 'prop-types'; 
-import { push } from 'react-router-redux'
-import Link from 'react-router-dom/Link';
- 
-type Props = { 
-  children: React.Node 
-}; 
- 
-let SelectableList = makeSelectable(List); 
- 
-function wrapState(ComposedComponent) { 
-  return class SelectableList extends Component { 
-    static propTypes = { 
-      children: PropTypes.node.isRequired, 
-      defaultValue: PropTypes.number.isRequired, 
-    }; 
- 
-    componentWillMount() { 
-      this.setState({ 
-        selectedIndex: this.props.defaultValue, 
-      }); 
-    } 
- 
-    handleRequestChange = (event, index) => { 
-      this.setState({ 
-        selectedIndex: index, 
-      }); 
-    }; 
- 
-    render() { 
-      return ( 
-        <ComposedComponent 
-          value={this.state.selectedIndex} 
-          onChange={this.handleRequestChange} 
-        > 
-          {this.props.children} 
-        </ComposedComponent> 
-      ); 
-    } 
-  }; 
-} 
- 
-SelectableList = wrapState(SelectableList); 
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import classNames from 'classnames';
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import List from 'material-ui/List';
+import Typography from 'material-ui/Typography';
+import Divider from 'material-ui/Divider';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import ChevronRightIcon from 'material-ui-icons/ChevronRight';
+import { mainOptionsListItems, configFolderListItems } from './tileData';
 
-// const CustomListItem = (props) => {
-//     return render(
-//         <div>
-//             <></ListItem>
-//         </div>
-//     );
-// }
- 
-export default class CustomDrawer extends Component<Props> { 
-  props: Props; 
- 
-  constructor (props) { 
-    super(props) 
-    this.state = {open: true}; 
-  } 
+const drawerWidth = 240;
 
-  
- 
-  render() { 
-    return ( 
-          <Paper style={{ width: '250px', height: '100vh', backgroundColor: '#5D3DA1' }} zDepth={2}> 
-            <div style={{ color: 'white', textAlign: 'center', padding: '10px', fontSize: '25px'}}>Teocratic Wall</div>  
-            <div style= {{ paddingBottom: "8px", textAlign: 'center', fontSize: '14px', color: 'white'}}>Los Sauces</div> 
-            <Divider /> 
-            <SelectableList defaultValue={0}> 
-              <ListItem color="white" containerElement={<Link to="/preaching" />} primaryText="Inicio" value={0} style={{color: 'white'}} leftIcon={<ActionHome color={ "white" }/>} /> 
-              <ListItem color="white" containerElement={<Link to="/preaching" />} primaryText="Predicacion" value={1} style={{color: 'white'}} leftIcon={<NotificationWc color={ "white" }/>} /> 
-              <ListItem containerElement={<Link to="/" color="white"/>} value={2}  style={{color: 'white'}} primaryText="Acomodadores" leftIcon={<DirectionWalk color={ "white" }/>} /> 
-              <ListItem value={3}  style={{color: 'white'}} primaryText="Microfonos" leftIcon={<AvMic color={ "white" }/>} /> 
-              <ListItem value={4}  style={{color: 'white'}} primaryText="Configuracion" leftIcon={<ActionSettings color={ "white" }/>} /> 
-            </SelectableList> 
-            
-          </Paper> 
-    ); 
-  } 
-} 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: '100vh',
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 36,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawerPaper: {
+    position: 'relative',
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerPaperClose: {
+    width: 60,
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar
+  },
+  content: {
+    flexGrow: 1,
+    background: 'none',
+    // backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+  },
+});
+
+class MiniDrawer extends React.Component {
+  state = {
+    open: true,
+    headerTitle: 'Teocratic Wall'
+  };
+
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { classes, theme } = this.props;
+
+    return (
+      <div className={classes.root}>
+
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+          }}
+          open={this.state.open}
+        >
+          <div style={{ background: '#5D3DA1' }} className={classes.toolbar}>
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+              <div style={{ borderRadius: '50%', height: '25px', width: '25px',  padding: '5px', fontSize: '15px', border: '1px solid', alignItems: 'center', display: 'flex' }}>TW</div>
+              <div style={{ marginLeft: '10px', display: 'flex', alignItems: 'center'}}>
+               <div>Los Sauces</div>
+              </div>
+            </div>
+            <IconButton style={{ color: 'white' }} onClick={this.handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>{mainOptionsListItems}</List>
+          <Divider />
+          <List>{configFolderListItems}</List>
+        </Drawer>
+        <AppBar
+          position="absolute" background='rgb(90, 90, 142)'
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+        >
+          <Toolbar style={{ backgroundColor: '#3a3a52' }} disableGutters={!this.state.open}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, this.state.open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit" noWrap>
+              {this.state.headerTitle}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {this.props.contentadded}
+        </main>
+      </div>
+    );
+  }
+}
+
+MiniDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(MiniDrawer);

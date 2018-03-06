@@ -1,13 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Home.css';
+import PropTypes from 'prop-types';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 // Material-UI
-import RaisedButton from 'material-ui/RaisedButton'
-import TextField from 'material-ui/TextField'
-import AppBar from 'material-ui/AppBar';
-import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import IconButton from 'material-ui/IconButton';
 
 // Styles
 const localStyles = {
@@ -21,7 +18,6 @@ type Props = {};
 
 export default class Home extends Component<Props> {
   props: Props;
-
   constructor(props, context) {
     super(props, context)
 
@@ -52,15 +48,15 @@ export default class Home extends Component<Props> {
 
   render() {
     return (
-      <div>
-        <AppBar style={{ backgroundColor: '#454546' }}
-          title={this.state.title} iconElementRight={<IconButton><MoreVert /></IconButton>} 
-        />
-        <div style={localStyles.container}>
-          <div>{this.state.welcomeText}</div>
-          <div style={{ height:"20px"}}></div>
-          <div>{this.state.recomendations}</div>
-        </div>
+      <div style={{ color: 'black' }}>
+        <Paper style={{ borderRadius: '5px', height: '100vh', padding: '10px' }} elevation={1}>
+          <Typography variant="headline" component="h3">
+              Bienvenido a Teocratic Wall.
+          </Typography>
+          <Typography component="p">
+            Le damos la bienvenida a Teocratic Wall esta aplicacion fue creada para poder agendar y organizar eventos importantes como predicacion y organozacion de las reuniones.
+          </Typography>
+        </Paper>
       </div>
     );
   }

@@ -107,7 +107,7 @@ class MiniDrawer extends React.Component {
         >
           <div style={{ background: '#5D3DA1' }} className={classes.toolbar}>
             <div style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <div style={{ borderRadius: '50%', height: '25px', width: '25px',  padding: '5px', fontSize: '15px', border: '1px solid', alignItems: 'center', display: 'flex' }}>TW</div>
+              <div style={{ borderRadius: '50%', height: '25px', width: '25px',  padding: '10px', fontSize: '15px', border: '1px solid', alignItems: 'center', display: 'flex' }}>TW</div>
               <div style={{ marginLeft: '10px', display: 'flex', alignItems: 'center'}}>
                <div>Los Sauces</div>
               </div>

@@ -1,10 +1,10 @@
 'use strict';
 import getMuiTheme from '../styles/getMuiTheme';
-import MuiThemeProvider from '..//styles/MuiThemeProvider';
+import MuiThemeProvider from '../styles/MuiThemeProvider';
 
 const muiTheme = getMuiTheme({
   palette: {
-    textColor: 'black',
+    textColor: '#24292e',
   }
 })
 Object.defineProperty(exports, "__esModule", {
